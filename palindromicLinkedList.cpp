@@ -43,24 +43,22 @@ class Solution {
 
 int main() {
 	ListNode* head = new ListNode;
-	ListNode* curr = head;
-	curr->next = new ListNode;
-	curr = curr->next;
-	ListNode* last;
-	int num;
-	while (cin >> num && num != -1) {
-		curr->val = num;
-		curr->next = new ListNode;
-		curr = curr->next;
-	}
-	curr = nullptr;
+    ListNode* curr = head;
+    int num;
+    cout << "Input Linked List: " << endl;
+    while (cin >> num && num != -1) {
+        curr->next = new ListNode(num);
+        curr = curr->next;
+    }
+    ListNode* newHead = head->next;
+    delete head;
 	/*
-	   while (head) {
-	   cout << head->val << ' ';
-	   head = head->next;
+	   while (newHead) {
+	   cout << newHead->val << ' ';
+	   newHead = newHead->next;
 	   }*/
 	Solution solution;
-	if (solution.isPalindrome(head)) {
+	if (solution.isPalindrome(newHead)) {
 		cout << "is palindrome" << endl;
 	} else {
 		cout << "is not palindrome" << endl;
