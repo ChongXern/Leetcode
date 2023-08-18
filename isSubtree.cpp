@@ -1,3 +1,8 @@
+/**
+ * https://leetcode.com/problems/subtree-of-another-tree/
+ * Tree, DFS, String Matching, Binary Tree, Hash Function
+ * Easy
+*/
 #include <iostream>
 #include <queue>
 #include <string>
