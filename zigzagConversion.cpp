@@ -27,6 +27,9 @@ public:
         }
     }
     string convert(string s, int numRows) {
+        if (numRows == 1) {
+            return s;
+        }
         int numCols = s.size();
         vector<vector<char> > matrix(numRows, vector<char>(numCols));
         int i = 0, j = 0;
@@ -37,6 +40,9 @@ public:
         string zigzag;
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
+                if (matrix[i][j] == '\0') {
+                    continue;
+                }
                 zigzag += matrix[i][j];
             }
         }
