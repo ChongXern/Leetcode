@@ -1,3 +1,8 @@
+/**
+ * https://leetcode.com/problems/valid-sudoku/
+ * Array, Hash Table, Matrix
+ * Medium
+*/
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -67,9 +72,11 @@ public:
 int main() {
 	vector<vector<char> > board;
 	cout << "Input sudoku:" << endl;
+    char read;
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
-			cin >> board[i][j];
+			cin >> read;
+            board[i][j] = read;
 		}
 	}
 	Solution solution;
