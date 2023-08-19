@@ -25,7 +25,7 @@ public:
 	    int count = 0;
 	    int start = 0;
 	    int end = 1;
-	    currSum = nums[0];
+	    int currSum = nums[0];
 	    while (start < nums.size() - 1 && end < nums.size() - 1) {
 		    cout << currSum << endl;
 		    if (currSum == k) {
@@ -51,7 +51,7 @@ public:
 vector<int> vectorFromArray(int* array, int size) {
 	vector<int> vector;
 	for (int i = 0; i < size; i++) {
-		vector.push_back(array[i];
+		vector.push_back(array[i]);
 	}
 	return vector;
 }
