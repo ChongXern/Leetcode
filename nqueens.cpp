@@ -27,8 +27,8 @@ class Solution {
 		 // Check from middle to top rows
 		 int currColPos = col + 1;
 		 int currColNeg = col - 1;
-		 for (int i = row - 1; i >= 0 && currColPos < n && currColNeg >= 0; i--) {
-			if (board[i][currColPos] == 'Q' || board[i][currColNeg] == 'Q') {
+		 for (int i = row - 1; i >= 0; i--) {
+			if ((currColPos < n && board[i][currColPos] == 'Q') || (currColNeg >= 0 && board[i][currColNeg] == 'Q')) {
 			   return false;
 			}
 			currColPos++;
@@ -37,8 +37,8 @@ class Solution {
 		 // Check from middle to bottom rows
 		 currColPos = col - 1;
 		 currColNeg = col + 1;
-		 for (int i = row + 1; i < n && currColPos >= 0 && currColNeg < n; i++) {
-			if (board[i][currColPos] == 'Q' || board[i][currColNeg] == 'Q') {
+		 for (int i = row + 1; i < n; i++) {
+			if ((currColPos >= 0 && board[i][currColPos] == 'Q') || (currColNeg < n && board[i][currColNeg] == 'Q')) {
 			   return false;
 			}
 			currColPos--;
@@ -50,6 +50,9 @@ class Solution {
 	  bool isBoardSafe(vector<string>& board, int n) {
 		 for (int row = 0; row < n; row++) {
 			for (int col = 0; col < n; col++) {
+			   if (board[row][col] == '.') {
+				  continue;
+			   }
 			   if (!isSafe(board, n, row, col)) {
 				  return false;
 			   }
@@ -65,7 +68,7 @@ class Solution {
 		 }
 		 for (int i = start; i < n; i++) {
 		   swap(board[start], board[i]);
-		   printBoard(board, n);
+		   // printBoard(board, n);
 		   backtrack(solutions, board, start + 1, n);
 		   if (isBoardSafe(board, n)) {
 			  solutions.push_back(board);
@@ -76,6 +79,12 @@ class Solution {
 
 	  vector<vector<string> > solveNQueens(int n) {
 		 vector<string> board;
+		 vector<vector<string> > solutions;
+		 if (n == 1) {
+			board.push_back("Q");
+			solutions.push_back(board);
+			return solutions;
+		 }
 		 for (int i = 0; i < n; i++) {
 			string currStr = "";
 			for (int j = 0; j < n; j++) {
@@ -87,7 +96,6 @@ class Solution {
 			}
 			board.push_back(currStr);
 		 }
-		 vector<vector<string> > solutions;
 		 backtrack(solutions, board, 0, n);
 		 return solutions;
 	  }
@@ -106,10 +114,12 @@ int main() {
 	  }
 	  cout << endl;
    }
-   vector<string> nq = { ".Q..", "...Q", "Q...", "..Q." };
-   if (solution.isBoardSafe(nq, 4)) {
-	  cout << "Safe\n";
+   cout << nQueens.size() << " solutions" << endl;
+   /*
+   vector<string> test = { "Q.", ".Q"};
+   if (solution.isSafe(test, 2, 0, 0)) {
+	  cout << "Test board is safe" << endl;
    } else {
-	  cout << "Unsafe\n";
-   }
+	  cout << "Test board is unsafe" << endl;
+   }*/
 }
